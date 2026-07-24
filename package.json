@@ -39,6 +39,8 @@
     "vitest": "^4.1.10"
   },
   "dependencies": {
-    "dependency-cruiser": "^18.1.0"
+    "@anthropic-ai/sdk": "^0.115.0",
+    "dependency-cruiser": "^18.1.0",
+    "zod": "^4.4.3"
   }
 }

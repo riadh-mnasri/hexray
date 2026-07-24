@@ -8,3 +8,12 @@ export interface StaticAnalyzerPort {
 export interface ReportGenerator {
   generate(findings: readonly Finding[], targetDir: string): Promise<string>;
 }
+
+export interface NarrativeReport {
+  readonly summary: string;
+  readonly recommendations: readonly string[];
+}
+
+export interface ReportNarrator {
+  narrate(findings: readonly Finding[]): Promise<NarrativeReport>;
+}
