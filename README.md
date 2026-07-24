@@ -52,11 +52,55 @@ Pas de serveur de dev ni de port associé : Hexray est un outil CLI, pas une app
 
 ## Utilisation
 
+Hexray n'est pas encore publié sur npm : pour l'instant, on le construit et on l'exécute en local (voir la feuille de route).
+
+### 1. Cloner et construire
+
 ```bash
-npx hexray ./chemin/vers/un/repo
+git clone https://github.com/riadh-mnasri/hexray.git
+cd hexray
+npm install
+npm run build
 ```
 
-Écrit un rapport `hexray-report.html` autonome (résumé exécutif et recommandations générés par Claude, puis la liste complète des findings) dans le dossier audité. Si aucun problème n'est détecté, aucun appel à l'API n'est fait.
+### 2. Configurer la clé API
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+```
+
+Optionnel, pour changer de modèle :
+
+```bash
+export HEXRAY_MODEL=claude-sonnet-5
+```
+
+### 3. Lancer l'audit
+
+L'argument est le chemin vers la racine du projet à auditer (celui qui contient son dossier `src/`) :
+
+```bash
+node dist/cli.js /chemin/vers/le/projet/a/auditer
+```
+
+Pour l'utiliser comme une commande le temps du développement :
+
+```bash
+npm link
+hexray /chemin/vers/le/projet/a/auditer
+```
+
+### 4. Lire le résultat
+
+- Aucune violation détectée : `hexray: no findings.` s'affiche, et aucun appel à l'API Claude n'est fait (donc aucun coût).
+- Violations détectées : un fichier `hexray-report.html` est écrit à la racine du projet audité (résumé exécutif, recommandations priorisées, puis le détail de chaque finding). Ouvrez-le dans un navigateur.
+
+### Exemple, sur le fixture de test livré avec le repo
+
+```bash
+node dist/cli.js test/fixtures/layering-violation
+# hexray: wrote report to test/fixtures/layering-violation/hexray-report.html
+```
 
 Statut actuel : détection des violations de couches et des cycles de dépendances pour TypeScript (via dependency-cruiser), synthèse par Claude et rapport HTML. Pas encore de support Kotlin.
 
@@ -67,6 +111,7 @@ Statut actuel : détection des violations de couches et des cycles de dépendanc
 - [x] Rapport HTML autonome
 - [ ] Adapter Detekt / ArchUnit (Kotlin)
 - [ ] Adapter fraîcheur des dépendances (npm audit, Gradle)
+- [ ] Publier sur npm (pour permettre `npx hexray`)
 
 ## Licence
 
