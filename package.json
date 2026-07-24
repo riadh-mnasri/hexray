@@ -1,10 +1,18 @@
 {
   "name": "hexray",
   "version": "0.1.0",
-  "description": "Architecture audit CLI for hexagonal/DDD codebases (TypeScript & Kotlin)",
+  "description": "Architecture audit CLI for hexagonal/DDD TypeScript codebases: layering violations, dependency cycles, and an agent-synthesized HTML report (Kotlin support planned)",
   "type": "module",
   "license": "MIT",
   "author": "Riadh MNASRI",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riadh-mnasri/hexray.git"
+  },
+  "homepage": "https://github.com/riadh-mnasri/hexray#readme",
+  "bugs": {
+    "url": "https://github.com/riadh-mnasri/hexray/issues"
+  },
   "bin": {
     "hexray": "./dist/cli.js"
   },
@@ -27,7 +35,8 @@
     "hexagonal",
     "ddd",
     "cli",
-    "static-analysis"
+    "static-analysis",
+    "typescript"
   ],
   "devDependencies": {
     "@eslint/js": "^9.9.0",
