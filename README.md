@@ -51,11 +51,11 @@ Pas de serveur de dev ni de port associé : Hexray est un outil CLI, pas une app
 npx hexray ./chemin/vers/un/repo
 ```
 
-Statut actuel : le squelette architecture/CLI est en place mais aucun adapter n'est encore branché (voir `src/infrastructure/`). C'est la prochaine étape.
+Statut actuel : détection des violations de couches et des cycles de dépendances pour TypeScript (via dependency-cruiser). Pas encore de support Kotlin, ni de rapport HTML.
 
 ## Feuille de route
 
-- [ ] Adapter ESLint / dependency-cruiser (violations de couches, cycles, TypeScript)
+- [x] Adapter dependency-cruiser (violations de couches, cycles, TypeScript)
 - [ ] Adapter Detekt / ArchUnit (Kotlin)
 - [ ] Adapter fraîcheur des dépendances (npm audit, Gradle)
 - [ ] Générateur de rapport porté par un agent (résumé exécutif, recommandations priorisées)
